@@ -23,7 +23,9 @@ const END_REQUEST = createActionName("END_REQUEST");
 const ERROR_REQUEST = createActionName("ERROR_REQUEST");
 // cart
 const ADD_PRODUCT_TO_CART = createActionName("ADD_PRODUCT_TO_CART");
+const PLUS_PRODUCT_IN_CART = createActionName("PLUS_PRODUCT_IN_CART");
 const REMOVE_PRODUCT_FROM_CART = createActionName("REMOVE_PRODUCT_FROM_CART");
+const MINUS_PRODUCT_FROM_CART = createActionName("MINUS_PRODUCT_FROM_CART");
 
 const loadProducts = (payload) => ({ payload, type: LOAD_PRODUCTS });
 const loadProduct = (payload) => ({ payload, type: LOAD_PRODUCT });
@@ -36,9 +38,17 @@ export const addProductToCart = (payload) => ({
   payload,
   type: ADD_PRODUCT_TO_CART,
 });
+export const plusProductInCart = (payload) => ({
+  payload,
+  type: PLUS_PRODUCT_IN_CART,
+});
 export const removeProductFromCart = (payload) => ({
   payload,
   type: REMOVE_PRODUCT_FROM_CART,
+});
+export const minusProductFromCart = (payload) => ({
+  payload,
+  type: MINUS_PRODUCT_FROM_CART,
 });
 
 const initialState = {
@@ -117,15 +127,44 @@ export default function reducer(state = initialState, action = {}) {
         },
       };
     case ADD_PRODUCT_TO_CART:
-      console.log(action.payload);
+      const productAdded = action.payload;
+      productAdded.quantity = 1;
       return {
         ...state,
         cart: [...state.cart, action.payload],
+      };
+    case PLUS_PRODUCT_IN_CART:
+      const cartProductId = action.payload;
+      const cartProduct = state.cart.find(
+        (product) => product._id === cartProductId
+      );
+      console.log(cartProduct);
+      cartProduct.quantity += 1;
+      return {
+        ...state,
+        cart: [...state.cart],
       };
     case REMOVE_PRODUCT_FROM_CART:
       return {
         ...state,
         cart: state.cart.filter((product) => product._id !== action.payload),
+      };
+    case MINUS_PRODUCT_FROM_CART:
+      const cartProductId2 = action.payload;
+      const cartProduct2 = state.cart.find(
+        (product) => product._id === cartProductId2
+      );
+      cartProduct2.quantity -= 1;
+      if (cartProduct2.quantity === 0) {
+        return {
+          ...state,
+          cart: state.cart.filter((product) => product._id !== action.payload),
+        };
+      }
+
+      return {
+        ...state,
+        cart: [...state.cart],
       };
     default:
       return state;
