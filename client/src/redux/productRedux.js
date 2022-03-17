@@ -21,7 +21,9 @@ const LOAD_PRODUCT = createActionName("LOAD_PRODUCT");
 const START_REQUEST = createActionName("START_REQUEST");
 const END_REQUEST = createActionName("END_REQUEST");
 const ERROR_REQUEST = createActionName("ERROR_REQUEST");
+// cart
 const ADD_PRODUCT_TO_CART = createActionName("ADD_PRODUCT_TO_CART");
+const REMOVE_PRODUCT_FROM_CART = createActionName("REMOVE_PRODUCT_FROM_CART");
 
 const loadProducts = (payload) => ({ payload, type: LOAD_PRODUCTS });
 const loadProduct = (payload) => ({ payload, type: LOAD_PRODUCT });
@@ -29,9 +31,14 @@ const loadProduct = (payload) => ({ payload, type: LOAD_PRODUCT });
 const startRequest = () => ({ type: START_REQUEST });
 const endRequest = () => ({ type: END_REQUEST });
 const errorRequest = (error) => ({ error, type: ERROR_REQUEST });
+// cart
 export const addProductToCart = (payload) => ({
   payload,
   type: ADD_PRODUCT_TO_CART,
+});
+export const removeProductFromCart = (payload) => ({
+  payload,
+  type: REMOVE_PRODUCT_FROM_CART,
 });
 
 const initialState = {
@@ -114,6 +121,11 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         cart: [...state.cart, action.payload],
+      };
+    case REMOVE_PRODUCT_FROM_CART:
+      return {
+        ...state,
+        cart: state.cart.filter((product) => product._id !== action.payload),
       };
     default:
       return state;
