@@ -1,4 +1,6 @@
 import axios from "axios";
+import { API_URI } from "../config";
+
 const reducerName = "products";
 const createActionName = (name) => `app/${reducerName}/${name}`;
 
@@ -16,7 +18,7 @@ export const loadProductsRequest = () => {
   return async (dispatch) => {
     try {
       await axios
-        .get(`http://localhost:5000/api/products`)
+        .get(`${API_URI}/products`)
         .then((res) => dispatch(loadProducts(res.data)));
     } catch (error) {
       console.warn(error);

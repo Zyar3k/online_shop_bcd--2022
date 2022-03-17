@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Products = (props) => {
   const { loadProducts, products } = props;
@@ -10,7 +11,13 @@ const Products = (props) => {
   return (
     <div>
       {products.map((product) => (
-        <p>{product.name}</p>
+        <Link to={`/product/${product._id}`} key={product._id}>
+          <div style={{ border: "1px solid black", padding: "10px" }}>
+            <p>{product.name}</p>
+            <img src={product.img} alt={product.name} />
+            <p>{product.price}</p>
+          </div>
+        </Link>
       ))}
     </div>
   );
