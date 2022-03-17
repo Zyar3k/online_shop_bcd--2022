@@ -5,6 +5,7 @@ import {
   getRequest,
   getCart,
   addProductToCart,
+  calculateCartTotal,
 } from "../../redux/productRedux";
 import ProductDetails from "./ProductDetails";
 
@@ -17,6 +18,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   loadProduct: (id) => dispatch(loadProductRequest(id)),
   addProductToCart: (payload) => dispatch(addProductToCart(payload)),
+  calculateCartTotal: (payload) => dispatch(calculateCartTotal(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

@@ -4,7 +4,14 @@ import Loader from "../../components/common/Loader/Loader";
 import PendingInfo from "../../components/common/PendingInfo/PendingInfo";
 
 const ProductDetails = (props) => {
-  const { loadProduct, request, product, addProductToCart, cart } = props;
+  const {
+    loadProduct,
+    request,
+    product,
+    addProductToCart,
+    cart,
+    calculateCartTotal,
+  } = props;
   const params = useParams();
   const currentProductId = params.id;
 
@@ -26,6 +33,7 @@ const ProductDetails = (props) => {
       return console.warn("Product already in cart");
     }
     addProductToCart(product);
+    calculateCartTotal();
   };
 
   useEffect(() => {

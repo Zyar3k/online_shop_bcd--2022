@@ -11,6 +11,7 @@ const CartItem = ({ product, removeProduct, plusProduct, minusProduct }) => {
   return (
     <div>
       <h1>{product.name}</h1>
+      <h3>{product.price}$</h3>
       <button onClick={plusProductInCart}>+</button>
       <button onClick={minusProductInCart}>-</button>
       <h4>{product.quantity}</h4>

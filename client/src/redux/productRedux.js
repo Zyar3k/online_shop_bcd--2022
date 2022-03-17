@@ -14,6 +14,7 @@ export const getRequest = ({ products }) => products.request;
 
 // cart
 export const getCart = ({ products }) => products.cart;
+export const getTotal = ({ products }) => products.total;
 
 const LOAD_PRODUCTS = createActionName("LOAD_PRODUCTS");
 const LOAD_PRODUCT = createActionName("LOAD_PRODUCT");
@@ -26,6 +27,7 @@ const ADD_PRODUCT_TO_CART = createActionName("ADD_PRODUCT_TO_CART");
 const PLUS_PRODUCT_IN_CART = createActionName("PLUS_PRODUCT_IN_CART");
 const REMOVE_PRODUCT_FROM_CART = createActionName("REMOVE_PRODUCT_FROM_CART");
 const MINUS_PRODUCT_FROM_CART = createActionName("MINUS_PRODUCT_FROM_CART");
+const CALCULATE_CART_TOTAL = createActionName("CALCULATE_CART_TOTAL");
 
 const loadProducts = (payload) => ({ payload, type: LOAD_PRODUCTS });
 const loadProduct = (payload) => ({ payload, type: LOAD_PRODUCT });
@@ -50,6 +52,10 @@ export const minusProductFromCart = (payload) => ({
   payload,
   type: MINUS_PRODUCT_FROM_CART,
 });
+export const calculateCartTotal = (payload) => ({
+  payload,
+  type: CALCULATE_CART_TOTAL,
+});
 
 const initialState = {
   data: [],
@@ -60,6 +66,7 @@ const initialState = {
   },
   product: [],
   cart: [],
+  total: 0,
 };
 
 export const loadProductsRequest = () => {
@@ -164,6 +171,14 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         cart: [...state.cart],
+      };
+    case CALCULATE_CART_TOTAL:
+      const cartTotal = state.cart.reduce((total, product) => {
+        return total + product.price * product.quantity;
+      }, 0);
+      return {
+        ...state,
+        total: cartTotal,
       };
     default:
       return state;
