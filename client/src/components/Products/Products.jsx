@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../../components/common/Loader/Loader";
 import PendingInfo from "../../components/common/PendingInfo/PendingInfo";
+import ProductsAmount from "../ProductsAmount/ProductsAmountContainer";
 
 const Products = (props) => {
   const { loadProducts, products, request } = props;
@@ -24,6 +25,7 @@ const Products = (props) => {
   if (success) {
     return (
       <div>
+        <ProductsAmount />
         {products.map((product) => (
           <Link to={`/product/${product._id}`} key={product._id}>
             <div style={{ border: "1px solid black", padding: "10px" }}>
