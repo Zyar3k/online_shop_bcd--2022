@@ -7,18 +7,15 @@ const Cart = (props) => {
     plusProductInCart,
     minusProductFromCart,
   } = props;
-  console.log(cart);
 
   const removeProduct = (id) => {
     removeProductFromCart(id);
   };
 
   const plusProduct = (id) => {
-    console.log("plus");
     plusProductInCart(id);
   };
   const minusProduct = (id) => {
-    console.log("minus");
     minusProductFromCart(id);
   };
 

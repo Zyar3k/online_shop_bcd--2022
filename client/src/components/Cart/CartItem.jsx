@@ -3,11 +3,9 @@ const CartItem = ({ product, removeProduct, plusProduct, minusProduct }) => {
     removeProduct(product._id);
   };
   const plusProductInCart = () => {
-    // console.log("plus");
     plusProduct(product._id);
   };
   const minusProductInCart = () => {
-    // console.log("minus");
     minusProduct(product._id);
   };
   return (

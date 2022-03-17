@@ -138,7 +138,6 @@ export default function reducer(state = initialState, action = {}) {
       const cartProduct = state.cart.find(
         (product) => product._id === cartProductId
       );
-      console.log(cartProduct);
       cartProduct.quantity += 1;
       return {
         ...state,

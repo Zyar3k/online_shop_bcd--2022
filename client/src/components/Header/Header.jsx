@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
+  const { cart } = props;
   return (
     <header>
       <div>
@@ -11,7 +12,7 @@ const Header = () => {
           Home
         </NavLink>
         <NavLink to="/contact">Contact</NavLink>
-        <NavLink to="/cart">Cart</NavLink>
+        <NavLink to="/cart">Cart{cart.length !== 0 && cart.length}</NavLink>
       </nav>
     </header>
   );
