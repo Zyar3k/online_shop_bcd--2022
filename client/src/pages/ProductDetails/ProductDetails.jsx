@@ -4,7 +4,7 @@ import Loader from "../../components/common/Loader/Loader";
 import PendingInfo from "../../components/common/PendingInfo/PendingInfo";
 
 const ProductDetails = (props) => {
-  const { loadProduct, request, product } = props;
+  const { loadProduct, request, product, addProductToCart, cart } = props;
   const params = useParams();
   const currentProductId = params.id;
 
@@ -19,20 +19,32 @@ const ProductDetails = (props) => {
     request.success === true &&
     product._id !== currentProductId;
 
+  const addProductCart = () => {
+    const check = cart.find((product) => product._id === currentProductId);
+
+    if (check) {
+      return console.warn("Product already in cart");
+    }
+    addProductToCart(product);
+  };
+
   useEffect(() => {
     loadProduct(currentProductId);
   }, [currentProductId, loadProduct]);
 
   if (success) {
     return (
-      <div>
-        <h5>{product.name}</h5>
-        <h5>{product.tag}</h5>
-        <h1>{product.name}</h1>
-        <p>{product.description}</p>
-        <p>{product.price}</p>
-        <img src={product.img} alt={product.name} />
-      </div>
+      <>
+        <div>
+          <h5>{product.name}</h5>
+          <h5>{product.tag}</h5>
+          <h1>{product.name}</h1>
+          <p>{product.description}</p>
+          <p>{product.price}</p>
+          <img src={product.img} alt={product.name} />
+        </div>
+        <button onClick={addProductCart}>ADD TO CART</button>
+      </>
     );
   } else if (loading) {
     return <Loader />;

@@ -12,19 +12,27 @@ export const getAmountOfProducts = ({ products }) => products.data.length;
 // request
 export const getRequest = ({ products }) => products.request;
 
+// cart
+export const getCart = ({ products }) => products.cart;
+
 const LOAD_PRODUCTS = createActionName("LOAD_PRODUCTS");
-export const LOAD_PRODUCT = createActionName("LOAD_PRODUCT");
+const LOAD_PRODUCT = createActionName("LOAD_PRODUCT");
 // request
 const START_REQUEST = createActionName("START_REQUEST");
 const END_REQUEST = createActionName("END_REQUEST");
 const ERROR_REQUEST = createActionName("ERROR_REQUEST");
+const ADD_PRODUCT_TO_CART = createActionName("ADD_PRODUCT_TO_CART");
 
 const loadProducts = (payload) => ({ payload, type: LOAD_PRODUCTS });
-export const loadProduct = (payload) => ({ payload, type: LOAD_PRODUCT });
+const loadProduct = (payload) => ({ payload, type: LOAD_PRODUCT });
 // request
 const startRequest = () => ({ type: START_REQUEST });
 const endRequest = () => ({ type: END_REQUEST });
 const errorRequest = (error) => ({ error, type: ERROR_REQUEST });
+export const addProductToCart = (payload) => ({
+  payload,
+  type: ADD_PRODUCT_TO_CART,
+});
 
 const initialState = {
   data: [],
@@ -34,6 +42,7 @@ const initialState = {
     success: null,
   },
   product: [],
+  cart: [],
 };
 
 export const loadProductsRequest = () => {
@@ -99,6 +108,12 @@ export default function reducer(state = initialState, action = {}) {
           error: action.error,
           success: false,
         },
+      };
+    case ADD_PRODUCT_TO_CART:
+      console.log(action.payload);
+      return {
+        ...state,
+        cart: [...state.cart, action.payload],
       };
     default:
       return state;
