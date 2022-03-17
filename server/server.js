@@ -24,6 +24,5 @@ db.once("open", () => console.log("Wow!! You're connected to the database!"));
 db.on("error", (error) => console.log("Error " + error));
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  console.log("Happy coding! ;)");
+  console.log(`Server is running on port http://localhost:${PORT}/`);
 });
