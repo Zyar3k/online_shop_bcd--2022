@@ -1,0 +1,17 @@
+@import "./settings.scss";
+@import "./typography.scss";
+@import "./normalize.scss";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $background-white;
+  color: $black-dark;
+  font-family: $main-font;
+}
