@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../../components/common/Loader/Loader";
 import PendingInfo from "../../components/common/PendingInfo/PendingInfo";
+import PageTitle from "../common/PageTitle/PageTitle";
+import ProductCard from "../ProductCard/ProductCard";
 import ProductsAmount from "../ProductsAmount/ProductsAmountContainer";
+import "./Products.scss";
 
 const Products = (props) => {
   const { loadProducts, products, request } = props;
@@ -24,17 +27,16 @@ const Products = (props) => {
 
   if (success) {
     return (
-      <div>
+      <div className="container">
+        <PageTitle>Our products</PageTitle>
         <ProductsAmount />
-        {products.map((product) => (
-          <Link to={`/product/${product._id}`} key={product._id}>
-            <div style={{ border: "1px solid black", padding: "10px" }}>
-              <p>{product.name}</p>
-              <img src={product.img} alt={product.name} />
-              <p>{product.price}</p>
-            </div>
-          </Link>
-        ))}
+        <ul className="productList">
+          {products.map((product) => (
+            <Link to={`/product/${product._id}`} key={product._id}>
+              <ProductCard product={product} />
+            </Link>
+          ))}
+        </ul>
       </div>
     );
   } else if (loading) {
