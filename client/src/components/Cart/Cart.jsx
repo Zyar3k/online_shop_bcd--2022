@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import CartItem from "./CartItem";
 
 const Cart = (props) => {
@@ -9,6 +10,12 @@ const Cart = (props) => {
     minusProductFromCart,
     calculateCartTotal,
   } = props;
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/summary");
+  };
 
   const removeProduct = (id) => {
     removeProductFromCart(id);
@@ -37,6 +44,7 @@ const Cart = (props) => {
         />
       ))}
       <h1>TOTAL:{total} $ </h1>
+      <button onClick={handleClick}>Summary</button>
     </div>
   );
 };

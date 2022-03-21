@@ -28,6 +28,7 @@ const PLUS_PRODUCT_IN_CART = createActionName("PLUS_PRODUCT_IN_CART");
 const REMOVE_PRODUCT_FROM_CART = createActionName("REMOVE_PRODUCT_FROM_CART");
 const MINUS_PRODUCT_FROM_CART = createActionName("MINUS_PRODUCT_FROM_CART");
 const CALCULATE_CART_TOTAL = createActionName("CALCULATE_CART_TOTAL");
+const CLEAR_CART = createActionName("CLEAR_CART");
 
 const loadProducts = (payload) => ({ payload, type: LOAD_PRODUCTS });
 const loadProduct = (payload) => ({ payload, type: LOAD_PRODUCT });
@@ -56,6 +57,7 @@ export const calculateCartTotal = (payload) => ({
   payload,
   type: CALCULATE_CART_TOTAL,
 });
+export const clearCart = () => ({ type: CLEAR_CART });
 
 const initialState = {
   data: [],
@@ -179,6 +181,12 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         total: cartTotal,
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        cart: [],
+        total: 0,
       };
     default:
       return state;
