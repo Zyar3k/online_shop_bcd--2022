@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Loader from "../../components/common/Loader/Loader";
 import PendingInfo from "../../components/common/PendingInfo/PendingInfo";
 
@@ -13,6 +13,7 @@ const ProductDetails = (props) => {
     calculateCartTotal,
   } = props;
   const params = useParams();
+  const navigate = useNavigate();
   const currentProductId = params.id;
 
   // TODO: move it
@@ -52,6 +53,7 @@ const ProductDetails = (props) => {
           <img src={product.img} alt={product.name} />
         </div>
         <button onClick={addProductCart}>ADD TO CART</button>
+        <button onClick={() => navigate(-1)}>Back</button>
       </>
     );
   } else if (loading) {

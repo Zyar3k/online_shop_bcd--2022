@@ -1,0 +1,110 @@
+@import "../../styles/global.scss";
+
+.header {
+  background-color: $color-blue;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    position: relative;
+  }
+
+  &__logo {
+    height: 100%;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    a {
+      color: $color-background-white;
+      font-size: 40px;
+      cursor: pointer;
+      font-weight: 900;
+
+      span {
+        color: $color-warn;
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    &__item {
+      margin: 0 10px;
+      padding: 10px;
+      color: $color-background-white;
+
+      i {
+        margin-left: 6px;
+        margin-right: 2px;
+        font-size: 12px;
+        color: $color-warn;
+      }
+
+      &.active {
+        color: $color-warn;
+      }
+    }
+  }
+
+  &__menuToggle {
+    height: 100%;
+    width: 60px;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    .fas {
+      color: $color-background-white;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    &__logo {
+      justify-content: center;
+    }
+
+    &__nav {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      flex-direction: column;
+      justify-content: center;
+      background-color: $color-blue;
+      font-size: 30px;
+      height: calc(100vh - 60px);
+      width: 100%;
+      left: -100%;
+      transition: all 0.5s ease;
+      z-index: 10;
+
+      &__item {
+        margin: 20px 0;
+
+        i {
+          margin-left: 10px;
+          margin-right: 4px;
+          font-size: 20px;
+        }
+      }
+
+      &.open {
+        left: 0;
+        transition: all 0.5s ease;
+      }
+    }
+
+    &__menuToggle {
+      display: flex;
+    }
+  }
+}
