@@ -1,3 +1,5 @@
+import "./Cart.scss";
+
 const CartItem = ({ product, removeProduct, plusProduct, minusProduct }) => {
   const deleteProduct = () => {
     removeProduct(product._id);
@@ -9,13 +11,22 @@ const CartItem = ({ product, removeProduct, plusProduct, minusProduct }) => {
     minusProduct(product._id);
   };
   return (
-    <div>
-      <h1>{product.name}</h1>
-      <h3>{product.price}$</h3>
-      <button onClick={plusProductInCart}>+</button>
-      <button onClick={minusProductInCart}>-</button>
-      <h4>{product.quantity}</h4>
-      <button onClick={() => deleteProduct()}>DELETE</button>
+    <div className="cartItem">
+      <img className="cartItem__img" src={product.img} alt={product.name} />
+      <p className="cartItem__name">{product.name}</p>
+      <h4 className="cartItem__price">{product.price}$</h4>
+      <div className="cartItem__actions">
+        <button className="btn btn__back" onClick={plusProductInCart}>
+          +
+        </button>
+        <h4>{product.quantity}</h4>
+        <button className="btn btn__back" onClick={minusProductInCart}>
+          -
+        </button>
+        <button className="btn btn__warn" onClick={() => deleteProduct()}>
+          <i className="fa-solid fa-trash-can" />
+        </button>
+      </div>
     </div>
   );
 };

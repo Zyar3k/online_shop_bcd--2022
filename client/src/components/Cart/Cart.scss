@@ -1,0 +1,42 @@
+@import "../../styles/global.scss";
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid $color-lighter;
+  &:last-child {
+    border-bottom: none;
+  }
+  &__img {
+    height: 100px;
+  }
+  &__name {
+    width: 400px;
+  }
+  &__price {
+    width: 60px;
+  }
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .btn {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0 10px;
+      padding: 4px;
+      height: 40px;
+      width: 40px;
+    }
+    h4 {
+      height: 40px;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

@@ -53,4 +53,12 @@ a:visited {
       background-color: $color-blue-lighter;
     }
   }
+  &__warn {
+    background-color: $color-warn;
+
+    &:hover {
+      background-color: $color-warn;
+      opacity: 0.8;
+    }
+  }
 }
