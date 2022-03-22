@@ -1,17 +1,21 @@
 import { useNavigate } from "react-router-dom";
+import PageTitle from "../../components/common/PageTitle/PageTitle";
+
+import "./Totals.scss";
 
 const Totals = () => {
   const navigate = useNavigate();
   return (
-    <>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque alias
-        aspernatur mollitia doloremque earum commodi culpa, provident omnis
-        maxime tempora voluptatibus veniam ipsa in consectetur quas rem vero
-        esse repudiandae?
-      </p>
-      <button onClick={() => navigate("/")}>Back to shop</button>
-    </>
+    <section className="totals container">
+      <PageTitle>Thank you!</PageTitle>
+      <h2 className="totals__thanks">
+        Thank you. We hope your experience was awesome and we can’t wait to see
+        you again soon.
+      </h2>
+      <button className="btn btn__back" onClick={() => navigate("/")}>
+        Back to shop
+      </button>
+    </section>
   );
 };
 
