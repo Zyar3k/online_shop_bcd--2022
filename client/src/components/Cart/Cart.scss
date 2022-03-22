@@ -1,5 +1,16 @@
 @import "../../styles/global.scss";
 
+.cartTotal {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+
+  &__total {
+    padding: 16px 0;
+  }
+}
+
 .cartItem {
   display: flex;
   align-items: center;
@@ -37,6 +48,28 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .cartItem {
+    flex-wrap: wrap;
+    &__img,
+    &__price {
+      width: 20%;
+      height: unset;
+    }
+    &__name {
+      width: 60%;
+    }
+    &__price,
+    &__name {
+      padding: 6px;
+    }
+    &__actions {
+      width: 100%;
+      justify-content: end;
     }
   }
 }

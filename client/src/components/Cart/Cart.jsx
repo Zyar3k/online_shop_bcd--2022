@@ -83,10 +83,12 @@ const Cart = (props) => {
             minusProduct={minusProduct}
           />
         ))}
-        <h1>TOTAL:{total.toFixed(2)} $ </h1>
-        <button className="btn btn__success" onClick={handleClick}>
-          Summary
-        </button>
+        <section className="cartTotal">
+          <h3 className="cartTotal__total">TOTAL: {total.toFixed(2)} $ </h3>
+          <button className="btn btn__success" onClick={handleClick}>
+            Summary
+          </button>
+        </section>
       </div>
     </section>
   );
