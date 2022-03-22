@@ -18,7 +18,9 @@ const ProductDetails = (props) => {
   const navigate = useNavigate();
   const currentProductId = params.id;
   let image;
+  console.log(product.img);
   if (product.img) image = product.img.slice(1);
+  console.log(image);
 
   // TODO: move it
   const success =

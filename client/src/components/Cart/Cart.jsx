@@ -13,6 +13,7 @@ const Cart = (props) => {
     minusProductFromCart,
     calculateCartTotal,
   } = props;
+  console.log(cart.length);
 
   const navigate = useNavigate();
 
@@ -50,12 +51,14 @@ const Cart = (props) => {
             minusProduct={minusProduct}
           />
         ))}
-        <section className="cartTotal">
-          <h3 className="cartTotal__total">TOTAL: {total.toFixed(2)} $ </h3>
-          <button className="btn btn__success" onClick={handleClick}>
-            Summary
-          </button>
-        </section>
+        {cart.length !== 0 && (
+          <section className="cartTotal">
+            <h3 className="cartTotal__total">TOTAL: {total.toFixed(2)} $ </h3>
+            <button className="btn btn__success" onClick={handleClick}>
+              Summary
+            </button>
+          </section>
+        )}
       </div>
     </section>
   );

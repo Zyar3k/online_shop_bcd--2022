@@ -1,10 +1,12 @@
 import Products from "../../components/Products/ProductsContainer";
+import HomeSlider from "../../components/HomeSlider/HomeSlider";
 
 const Home = () => {
   return (
-    <div>
+    <main className="container">
+      <HomeSlider />
       <Products />
-    </div>
+    </main>
   );
 };
 
