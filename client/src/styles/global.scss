@@ -30,3 +30,27 @@ a:visited {
   max-width: 1200px;
   margin: 0 auto;
 }
+
+.btn {
+  border: none;
+  background: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  text-transform: uppercase;
+
+  &__success {
+    background-color: $color-blue;
+    color: $color-background-white;
+    &:hover {
+      background-color: $color-blue-lighter;
+    }
+  }
+
+  &__back {
+    background-color: $color-lighter;
+
+    &:hover {
+      background-color: $color-blue-lighter;
+    }
+  }
+}

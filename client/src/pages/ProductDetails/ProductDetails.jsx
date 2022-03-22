@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import Loader from "../../components/common/Loader/Loader";
 import PendingInfo from "../../components/common/PendingInfo/PendingInfo";
 
+import "./ProductDetails.scss";
+
 const ProductDetails = (props) => {
   const {
     loadProduct,
@@ -15,6 +17,8 @@ const ProductDetails = (props) => {
   const params = useParams();
   const navigate = useNavigate();
   const currentProductId = params.id;
+  let image;
+  if (product.img) image = product.img.slice(1);
 
   // TODO: move it
   const success =
@@ -43,18 +47,31 @@ const ProductDetails = (props) => {
 
   if (success) {
     return (
-      <>
-        <div>
-          <h5>{product.name}</h5>
-          <h5>{product.tag}</h5>
-          <h1>{product.name}</h1>
-          <p>{product.description}</p>
-          <p>{product.price}</p>
-          <img src={product.img} alt={product.name} />
+      <article className="product container">
+        <div className="product__info">
+          {product.tag && <h5 className="product__tag">{product.tag}</h5>}
+          <h1
+            className={product.tag ? "product__name " : "product__name noTag"}
+          >
+            {product.name}
+          </h1>
+          <div className="product__image">
+            <img src={image} alt={product.name} />
+          </div>
+          <div className="product__details">
+            <p className="product__desc">{product.description}</p>
+            <p className="product__price">Price: {product.price}$</p>
+            <div className="product__actions">
+              <button className="btn btn__success" onClick={addProductCart}>
+                ADD TO CART
+              </button>
+              <button className="btn btn__back" onClick={() => navigate(-1)}>
+                Back
+              </button>
+            </div>
+          </div>
         </div>
-        <button onClick={addProductCart}>ADD TO CART</button>
-        <button onClick={() => navigate(-1)}>Back</button>
-      </>
+      </article>
     );
   } else if (loading) {
     return <Loader />;
