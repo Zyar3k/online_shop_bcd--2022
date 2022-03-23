@@ -2,22 +2,37 @@ import PageTitle from "../../components/common/PageTitle/PageTitle";
 
 import "./Contact.scss";
 
+const addressData = {
+  name: "Betty Craft Designs",
+  address: "Creative House",
+  street: "Example Street 13",
+  city: "London",
+  zip: "SW1A 1AA",
+  country: "UK",
+  phone: "+44 (0)123 456 7890",
+  mail: "bcd@contact.com",
+  weekDayOpeningTimes: "Monday - Friday 9:00am - 4:30pm",
+  weekendOpeningTimes: "Saturday - 9:00am - 2:30pm",
+  sundayOpeningTimes: "Sunday - Closed",
+};
+
 const Contact = () => {
   return (
     <main className="container">
       <PageTitle>Contact</PageTitle>
       <div className=" contact">
         <section className="contact__left">
-          <h2 className="contact__name">Betty Craft Designs</h2>
-          <p className="contact__item">Creative House</p>
-          <p className="contact__item">Example Street 13</p>
-          <p className="contact__item">London SW1A 1AA</p>
-          <p className="contact__item">Tel: +44 (0)123 456 7890</p>
-          <p className="contact__item">@ bcd@contact.com</p>
+          <h2 className="contact__name">{addressData.name}</h2>
+          <p className="contact__item">{addressData.address}</p>
+          <p className="contact__item">{addressData.street}</p>
+          <p className="contact__item">{addressData.city}</p>
+          <p className="contact__item">{addressData.zip}</p>
+          <p className="contact__item">Tel: {addressData.phone}</p>
+          <p className="contact__item">@ {addressData.mail}</p>
           <h3 className="contact__subtitle">Store Opening Times:</h3>
-          <p className="contact__item">Monday - Friday 9:00am - 4:30pm</p>
-          <p className="contact__item">Saturday - 9:00am - 2:30pm</p>
-          <p className="contact__item">Sunday - Closed</p>
+          <p className="contact__item">{addressData.weekDayOpeningTimes}</p>
+          <p className="contact__item">{addressData.weekendOpeningTimes}</p>
+          <p className="contact__item">{addressData.sundayOpeningTimes}</p>
         </section>
         <section className="contact__right">
           <iframe
@@ -34,22 +49,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
-/*
-CONTACT US
-
-
-Address:
-Crafty Arts Ltd
-Creative House
-Bryant Avenue
-
-
-
-Tel: +44 (0)207 993 5479
-
-Store Opening Times:
-Monday - Friday 9:00am - 4:30pm
-Saturday - 9:00am - 2:30pm
-Sunday - Closed
-*/

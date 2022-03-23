@@ -1,7 +1,6 @@
 @import "../../styles/global.scss";
 
 .contact {
-  //   border: 1px solid red;
   display: flex;
 
   &__left,
@@ -38,7 +37,6 @@
     }
 
     &__name {
-      // text-align: center;
       margin-bottom: 20px;
     }
     &__subtitle {
