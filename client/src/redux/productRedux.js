@@ -16,6 +16,9 @@ export const getRequest = ({ products }) => products.request;
 export const getCart = ({ products }) => products.cart;
 export const getTotal = ({ products }) => products.total;
 
+// search
+export const getSearchedProducts = ({ products }) => products.searchedProducts;
+
 const LOAD_PRODUCTS = createActionName("LOAD_PRODUCTS");
 const LOAD_PRODUCT = createActionName("LOAD_PRODUCT");
 // request
@@ -30,12 +33,19 @@ const MINUS_PRODUCT_FROM_CART = createActionName("MINUS_PRODUCT_FROM_CART");
 const CALCULATE_CART_TOTAL = createActionName("CALCULATE_CART_TOTAL");
 const CLEAR_CART = createActionName("CLEAR_CART");
 
+// search
+const SEARCH_PRODUCTS = createActionName("SEARCH_PRODUCTS");
+
 const loadProducts = (payload) => ({ payload, type: LOAD_PRODUCTS });
 const loadProduct = (payload) => ({ payload, type: LOAD_PRODUCT });
 // request
 const startRequest = () => ({ type: START_REQUEST });
 const endRequest = () => ({ type: END_REQUEST });
 const errorRequest = (error) => ({ error, type: ERROR_REQUEST });
+
+// search
+const searchProducts = (payload) => ({ payload, type: SEARCH_PRODUCTS });
+
 // cart
 export const addProductToCart = (payload) => ({
   payload,
@@ -59,6 +69,12 @@ export const calculateCartTotal = (payload) => ({
 });
 export const clearCart = () => ({ type: CLEAR_CART });
 
+// search
+export const searchProductsAction = (payload) => ({
+  payload,
+  type: SEARCH_PRODUCTS,
+});
+
 const initialState = {
   data: [],
   request: {
@@ -69,6 +85,7 @@ const initialState = {
   product: [],
   cart: [],
   total: 0,
+  searchedProducts: [],
 };
 
 export const loadProductsRequest = () => {
@@ -188,6 +205,17 @@ export default function reducer(state = initialState, action = {}) {
         cart: [],
         total: 0,
       };
+    case SEARCH_PRODUCTS:
+      return {
+        ...state,
+        searchedProducts: state.data.filter((product) => {
+          return (
+            product.name.toLowerCase().includes(action.payload.toLowerCase()) ||
+            product.tag.toLowerCase().includes(action.payload.toLowerCase())
+          );
+        }),
+      };
+
     default:
       return state;
   }

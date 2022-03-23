@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../../components/common/Loader/Loader";
 import PendingInfo from "../../components/common/PendingInfo/PendingInfo";
 import PageTitle from "../common/PageTitle/PageTitle";
 import ProductCard from "../ProductCard/ProductCard";
 import ProductsAmount from "../ProductsAmount/ProductsAmountContainer";
+import Search from "../Search/SearchContainer";
 import "./Products.scss";
 
 const Products = (props) => {
-  const { loadProducts, products, request } = props;
+  const { loadProducts, products, request, searchedProducts } = props;
+  const [displayProducts, setDisplayProducts] = useState(products);
 
   // TODO: move it
   const success =
@@ -22,28 +24,43 @@ const Products = (props) => {
     products.length === 0;
 
   useEffect(() => {
-    loadProducts();
-  }, []);
+    if (searchedProducts !== 0) {
+      setDisplayProducts(searchedProducts);
+    }
+  }, [searchedProducts]);
 
-  if (success) {
-    return (
+  useEffect(() => {
+    loadProducts();
+
+    if (success) {
+      setDisplayProducts(products);
+    }
+  }, [loadProducts, success]);
+
+  return (
+    <>
       <div className="container">
-        <PageTitle>Our products</PageTitle>
-        <ProductsAmount />
-        <ul className="productList">
-          {products.map((product) => (
-            <Link to={`/product/${product._id}`} key={product._id}>
-              <ProductCard product={product} />
-            </Link>
-          ))}
-        </ul>
+        <div className="componentsWrapper">
+          <ProductsAmount />
+          <Search />
+        </div>
       </div>
-    );
-  } else if (loading) {
-    return <Loader />;
-  } else if (pending) {
-    return <PendingInfo />;
-  }
+      {loading && <Loader />}
+      {pending && <PendingInfo />}
+      {success && (
+        <>
+          <PageTitle>Our products</PageTitle>
+          <ul className="productList">
+            {displayProducts.map((product) => (
+              <Link to={`/product/${product._id}`} key={product._id}>
+                <ProductCard product={product} />
+              </Link>
+            ))}
+          </ul>
+        </>
+      )}
+    </>
+  );
 };
 
 export default Products;

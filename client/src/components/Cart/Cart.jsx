@@ -13,7 +13,6 @@ const Cart = (props) => {
     minusProductFromCart,
     calculateCartTotal,
   } = props;
-  console.log(cart.length);
 
   const navigate = useNavigate();
 

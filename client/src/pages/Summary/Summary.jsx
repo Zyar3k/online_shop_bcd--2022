@@ -42,7 +42,7 @@ const Summary = (props) => {
               {product.quantity}
             </div>
             <div className="flex-row" role="cell">
-              {product.price * product.quantity} $
+              {(product.price * product.quantity).toFixed(2)} $
             </div>
           </div>
         ))}
@@ -53,7 +53,7 @@ const Summary = (props) => {
             Total:
           </div>
           <div className="flex-row" role="cell">
-            {total} $
+            {total.toFixed(2)} $
           </div>
         </div>
       </div>

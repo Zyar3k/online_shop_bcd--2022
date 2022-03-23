@@ -5,3 +5,14 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.componentsWrapper {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 767px) {
+  .componentsWrapper {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,27 @@
+@import "../../styles/global.scss";
+
+.search {
+  padding: 0 20px;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  &__input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $color-blue-lighter;
+    border-radius: 5px;
+    outline: none;
+
+    &:focus {
+      border-color: $color-blue;
+    }
+  }
+
+  .fas {
+    position: absolute;
+    color: $color-blue-lighter;
+    right: 30px;
+  }
+}
