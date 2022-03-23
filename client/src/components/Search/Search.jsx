@@ -17,7 +17,7 @@ const Search = ({ searchProducts }) => {
         onChange={(e) => setSearch(e.target.value)}
         className="search__input"
         type="text"
-        placeholder="Search..."
+        placeholder="Name or tag..."
         name="search"
         value={search}
       />

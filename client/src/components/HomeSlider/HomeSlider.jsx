@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -52,14 +52,15 @@ const HomeSlider = () => {
           <img className="slide__image" src={img1} alt="" />
         </div>
         <h1 className="slide__text">Free UK Shipping</h1>
-        <button className="btn btn__success">Check our bestseller's</button>
       </div>
       <div className="slide">
         <div className="slide__imgWrapper">
           <img className="slide__image" src={img2} alt="" />
         </div>
         <h1 className="slide__text">Personalized orders especially for you</h1>
-        <button className="btn btn__success">TRY</button>
+        <button className="btn btn__success">
+          <Link to="/contact">Contact</Link>
+        </button>
       </div>
       <div className="slide">
         <div className="slide__imgWrapper">
@@ -68,7 +69,9 @@ const HomeSlider = () => {
         <h1 className="slide__text">
           We organize crafting workshops... and many, many other things...
         </h1>
-        <button className="btn btn__success">Contact</button>
+        <button className="btn btn__success">
+          <Link to="/contact">Contact</Link>
+        </button>
       </div>
     </Slider>
   );
