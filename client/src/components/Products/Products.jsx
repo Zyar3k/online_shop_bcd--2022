@@ -6,6 +6,7 @@ import PageTitle from "../common/PageTitle/PageTitle";
 import ProductCard from "../ProductCard/ProductCard";
 import ProductsAmount from "../ProductsAmount/ProductsAmountContainer";
 import Search from "../Search/SearchContainer";
+
 import "./Products.scss";
 
 const Products = (props) => {
@@ -45,8 +46,9 @@ const Products = (props) => {
           <Search />
         </div>
       </div>
+
       {loading && <Loader />}
-      {pending && <PendingInfo />}
+      {pending && <PendingInfo>No products found</PendingInfo>}
       {success && (
         <>
           <PageTitle>Our products</PageTitle>
