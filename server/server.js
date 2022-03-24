@@ -20,6 +20,12 @@ mongoose.connect(process.env.DB, {
 });
 let db = mongoose.connection;
 
+app.get("/", (req, res) => {
+  res.send(
+    "<h1> Welcome to Betty Craft Designs</h1><br/><h2>To see products go to <a href='https://bcd-server.herokuapp.com/api/products'>Products API</a></h2>"
+  );
+});
+
 db.once("open", () => console.log("Wow!! You're connected to the database!"));
 db.on("error", (error) => console.log("Error " + error));
 
