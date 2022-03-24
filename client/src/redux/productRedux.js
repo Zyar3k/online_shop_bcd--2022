@@ -43,9 +43,6 @@ const startRequest = () => ({ type: START_REQUEST });
 const endRequest = () => ({ type: END_REQUEST });
 const errorRequest = (error) => ({ error, type: ERROR_REQUEST });
 
-// search
-const searchProducts = (payload) => ({ payload, type: SEARCH_PRODUCTS });
-
 // cart
 export const addProductToCart = (payload) => ({
   payload,

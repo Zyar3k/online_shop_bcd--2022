@@ -3,6 +3,8 @@ import PageTitle from "../../components/common/PageTitle/PageTitle";
 
 import "./Summary.scss";
 
+const tableHeader = ["Name:", "Price:", "Quantity:", "Product total:"];
+
 const Summary = (props) => {
   const { cart, total, clearCart } = props;
   const navigate = useNavigate();
@@ -17,18 +19,11 @@ const Summary = (props) => {
       <PageTitle>Your order</PageTitle>
       <div className="table-container" role="table" aria-label="Destinations">
         <div className="flex-table " role="rowgroup">
-          <div className="flex-row first" role="columnheader">
-            Name:
-          </div>
-          <div className="flex-row" role="columnheader">
-            Price:
-          </div>
-          <div className="flex-row" role="columnheader">
-            Quantity:
-          </div>
-          <div className="flex-row" role="columnheader">
-            Product total:
-          </div>
+          {tableHeader.map((item, index) => (
+            <div key={index} className="flex-row" role="columnheader">
+              {item}
+            </div>
+          ))}
         </div>
         {cart.map((product) => (
           <div key={product._id} className="flex-table " role="rowgroup">

@@ -3,6 +3,26 @@ import { NavLink } from "react-router-dom";
 
 import "./Header.scss";
 
+const headerItems = [
+  {
+    name: "Home",
+    path: "/",
+    exact: true,
+  },
+  {
+    name: "Contact",
+    path: "/contact",
+    exact: false,
+  },
+  {
+    name: "Cart",
+    path: "/cart",
+    exact: false,
+    icon: "fa-solid fa-cart-shopping",
+    isCart: true,
+  },
+];
+
 const Header = (props) => {
   const { cart } = props;
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -15,34 +35,23 @@ const Header = (props) => {
           </NavLink>
         </div>
         <nav className={isOpenMenu ? "header__nav open" : "header__nav"}>
-          <NavLink
-            onClick={() => setIsOpenMenu(false)}
-            to="/"
-            exact="true"
-            className="header__nav__item"
-          >
-            Home
-          </NavLink>
-          <NavLink
-            onClick={() => setIsOpenMenu(false)}
-            className="header__nav__item"
-            to="/contact"
-          >
-            Contact
-          </NavLink>
-          <NavLink
-            onClick={() => setIsOpenMenu(false)}
-            className="header__nav__item"
-            to="/cart"
-          >
-            Cart
-            {cart.length !== 0 && (
-              <>
-                <i className="fa-solid fa-cart-shopping"></i>
-                <sup>{cart.length}</sup>
-              </>
-            )}
-          </NavLink>
+          {headerItems.map((item, index) => (
+            <NavLink
+              key={index}
+              onClick={() => setIsOpenMenu(false)}
+              to={item.path}
+              exact={item.exact.toString()}
+              className="header__nav__item"
+            >
+              {item.name}
+              {cart.length !== 0 && (
+                <>
+                  <i className={item.icon}></i>
+                  {item.isCart && <sup>{cart.length}</sup>}
+                </>
+              )}
+            </NavLink>
+          ))}
         </nav>
         <span
           className="header__menuToggle"
