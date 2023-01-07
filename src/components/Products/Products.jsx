@@ -36,6 +36,7 @@ const Products = (props) => {
     if (success) {
       setDisplayProducts(products);
     }
+    // eslint-disable-next-line
   }, [loadProducts, success]);
 
   return (

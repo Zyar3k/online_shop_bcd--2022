@@ -9,6 +9,7 @@ const Search = ({ searchProducts }) => {
   };
   useEffect(() => {
     handleSearch();
+    // eslint-disable-next-line
   }, [search]);
 
   return (
