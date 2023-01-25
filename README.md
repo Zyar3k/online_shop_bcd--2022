@@ -18,10 +18,6 @@
 - react-loader-spinner
 - slick-carousel
 
-## Backend
-
-### [Server Repo](https://github.com/Zyar3k/bcd-server__backend)
-
 ### Installation
 
 To run app
@@ -30,3 +26,8 @@ To run app
 npm i / yarn install
 npm start / yarn start
 ```
+
+
+### Backend
+
+### [Server Repo](https://github.com/Zyar3k/bcd-server__backend)
